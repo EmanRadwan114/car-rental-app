@@ -1,18 +1,15 @@
 {
   "version": 2,
   "builds": [
-    { "src": "app.js", "use": "@vercel/node" },
-    { "src": "modules/**/**.js", "use": "@vercel/node" }
-  ],
-  "functions": {
-    "modules/**/**.js": {
-      "maxDuration": 40
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "routes": [
-    { "src": "/user/(.*)", "dest": "/modules/user/user.routes.js" },
-    { "src": "/rental/(.*)", "dest": "/modules/rental/rental.routes.js" },
-    { "src": "/car/(.*)", "dest": "/modules/car/car.routes.js" },
-    { "src": "/(.*)", "dest": "app.js" }
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
   ]
 }
