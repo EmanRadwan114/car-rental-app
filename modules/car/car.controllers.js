@@ -40,17 +40,43 @@ export async function deleteCar(req, res) {
 
 // ^ Get all cars whose model is ‘Honda’ and ‘Toyota’
 export async function getHondaToyotaCars(req, res) {
-  // const { model } = req.query;
+  const { model } = req.query;
 
-  // const cars = await db
-  //   .collection("cars")
-  //   .find({ model: {$in:} })
-  //   .toArray();
-  res.json({ message: "success" });
+  const cars = await db
+    .collection("cars")
+    .find({ model: { $in: [model[0], model[1]] } })
+    .toArray();
+  res.json({ message: "success", cars });
 }
 
 // ^ Get Available Cars of a Specific Model.
+export async function getAvailableOfSpecificModel(req, res) {
+  const { model } = req.query;
+
+  const cars = await db
+    .collection("cars")
+    .find({ model: model, rentalStatus: "available" })
+    .toArray();
+  res.json({ message: "success", cars });
+}
 
 // ^ Get Cars that are Either rented or of a Specific Model.
+export async function getRentedOrSpecificModel(req, res) {
+  const { model } = req.query;
 
-// ^ Get Available Cars of Specific Models or Rented Cars of a Specific Model
+  const cars = await db
+    .collection("cars")
+    .find({ $or: [{ model: model }, { rentalStatus: "rented" }] })
+    .toArray();
+  res.json({ message: "success", cars });
+}
+// ^ Get Available Cars of a Specific Model or Rented Cars of a Specific Model
+export async function getRentedOrAvailable(req, res) {
+  const { model, status } = req.query;
+
+  const cars = await db
+    .collection("cars")
+    .find({ model: model, rentalStatus: status })
+    .toArray();
+  res.json({ message: "success", cars });
+}
