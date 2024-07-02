@@ -6,7 +6,7 @@ const client = new MongoClient(
 );
 
 // Database Name
-const dbName = "car_rental";
+const dbName = "car_rentals";
 
 // Use connect method to connect to the server
 client
