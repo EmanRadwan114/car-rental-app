@@ -7,21 +7,6 @@ import rentalRouter from "./modules/rental/rental.routes.js";
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const maxDurationMiddleware = (req, res, next) => {
-  // Set maxDuration in milliseconds (e.g., 30 seconds)
-  const maxDuration = 30000;
-
-  // Set a timeout for this request
-  setTimeout(() => {
-    next(new Error("Request Timeout"));
-  }, maxDuration);
-
-  next();
-};
-
-// Apply maxDurationMiddleware to all routes
-app.use(maxDurationMiddleware);
-
 app.use(cors());
 
 app.get("/", (req, res) => {
