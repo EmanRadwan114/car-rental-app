@@ -5,7 +5,7 @@ import userRouter from "./modules/user/user.routes.js";
 import rentalRouter from "./modules/rental/rental.routes.js";
 
 const app = express();
-const port = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
@@ -14,7 +14,7 @@ app.use("/cars", carRouter);
 app.use("/rentals", rentalRouter);
 app.use("/users", userRouter);
 
-app.listen(port, (err) => {
+app.listen(PORT, (err) => {
   if (err) return console.log("there is an error", err);
-  console.log(`server is running on port ${port}`);
+  console.log(`server is running on port ${PORT}`);
 });

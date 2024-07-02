@@ -1,7 +1,9 @@
 import { MongoClient } from "mongodb";
 
 // Connection URL
-const client = new MongoClient("mongodb://127.0.0.1:27017");
+const client = new MongoClient(
+  "mongodb+srv://monyradwan33:dKGser5mHGi7r4Sa@noderoute.4vmin5r.mongodb.net/"
+);
 
 // Database Name
 const dbName = "car_rental";
