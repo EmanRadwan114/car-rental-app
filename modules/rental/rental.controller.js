@@ -9,6 +9,8 @@ export async function getAllRentals(req, res) {
 
 // ^ add new rental
 export async function addRental(req, res) {
+  req.body.carId = new ObjectId(req.body.carId);
+  req.body.customerId = new ObjectId(req.body.customerId);
   const result = await db.collection("rentals").insertOne(req.body);
   res.status(201).json({ message: "success", result });
 }
